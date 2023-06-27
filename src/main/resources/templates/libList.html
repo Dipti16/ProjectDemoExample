@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>BoookMs</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akronim&amp;display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="/assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.css">
+    <link rel="stylesheet" href="/assets/css/Navbar-With-Button-icons.css">
+    <link rel="stylesheet" href="/assets/css/Pretty-Registration-Form-.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script>
+    document.addEventListener("DOMContentLoaded",function()
+    {
+        var button=document.getElementById("btn");
+        button.addEventListener("click",function()
+        {
+            var element=document.getElementById("102");
+            html2pdf().from(element).save("libList.pdf")
+        });
+    });
+</script>
+
+
+
+</head>
+
+<body style="text-shadow: 0px 0px;box-shadow: 0px 0px;">
+
+<script th:inline="javascript">
+    var msg=[[${msg}]]
+    if(msg !=null)
+    {
+        swal("Good Job!",msg,"sucess");
+     }
+     else
+     {
+         swal("Good job!",msg,"sucess");
+     }
+
+
+</script>
+<div th:replace="fragment.html :: navBar"></div>
+<button id="btn" class="btn btn-primary" type="button" style="background: var(--bs-danger);">Generate PDF<svg class="bi bi-printer" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+    <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"></path>
+    <path d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2H5zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4V3zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2H5zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1z"></path>
+</svg></button>
+    <div style="text-align: center;font-size: 30px;margin: 20px;"><label class="form-label" style="text-align: center;font-family: Akronim, serif;color: var(--bs-purple);font-size: 55px;"><strong>Library Details</strong></label>
+        <div style="font-size: 20px;">
+            <div class="table-responsive" style="padding-right: 80px;padding-left: 80px;">
+                <table class="table">
+                    <thead style="background: var(--bs-border-color);font-family: Acme, sans-serif;">
+                        <tr>
+                            <th style="height: 40px;">Id&nbsp;</th>
+                            <th style="width: 200px;height: 40px;">Student Name</th>
+                            <th style="width: 200px;height: 40px;">Email</th>
+                            <th style="width: 200px;height: 40px;">Book Name</th>
+                            <th style="width: 200px;height: 40px;">Phone No</th>
+                            <th>Borrowed Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="library: ${libList}">
+                            <td th:text="${library.id}"></td>
+                            <td th:text="${library.stuName}"></td>
+                            <td th:text="${library.email}"></td>
+                            <td th:text="${library.nameOfBook}"></td>
+                            <td th:text="${library.phoneNO}"></td>
+                            <td th:text="${library.borrowDate}"></td>
+                            <td><a th:href="@{/show/delete/{libraryid}/(libraryid=${library.id})}" class="btn btn-danger" role="button">Delete&nbsp;<i class="far fa-trash-alt"></i></a></td>
+                        </tr>
+                        <tr></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="/assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---1-Index-Table-with-Search--Sort-Filters.js"></script>
+    <script src="/assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---Material-UI-Actions.js"></script>
+</body>
+
+</html>
