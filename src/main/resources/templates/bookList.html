@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>BoookMs</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="/assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.css">
+    <link rel="stylesheet" href="/assets/css/Navbar-With-Button-icons.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+</head>
+
+<body>
+<script th:inline="javascript">
+    var msg=[[${msg}]]
+    if(msg !=null)
+    {
+        if(msg.include('delete')
+        {
+            swal("Good Job!",msg,"sucess");
+        }
+        else
+        {
+            swal("Good job!",msg,"sucess");
+        }
+    }
+
+</script>
+<div th:replace="fragment.html :: navBar"></div>
+
+    <h1 style="text-align: center;font-weight: bold;color: var(--bs-red);margin: 30px;">Registration Details</h1>
+    <div style="padding-right: 80px;padding-left: 80px;">
+        <div class="table-responsive" style="padding-right: 50px;padding-left: 50px;">
+            <table class="table">
+                <thead style="background: var(--bs-info);">
+                    <tr>
+                        <th>Id</th>
+                        <th>Author</th>
+                        <th>Name</th>
+                        <th>Price</th>
+                        <th class="text-center">Image</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="book: ${booklist}">
+                        <td th:text="${book.id}"></td>
+                        <td th:text="${book.author}"></td>
+                        <td th:text="${book.name}"></td>
+                        <td th:text="${book.price}"></td>
+                        <td class="text-center"><img th:src="@{/assets/img/{fileName}/(fileName = ${book.id + '.' + book.ext})}" height="80px" width="100px"> </td>
+                        <td><a th:href="@{/save/delete/{bookid}/(bookid=${book.id})}" class="btn btn-danger" role="button">Delete&nbsp;<i class="far fa-trash-alt"></i></a></td>
+<!--                        <td><a th:href="@{/emp/delete/{empid}/(empid=${emp.id})}" class="btn btn-danger" role="button">Delete&nbsp;<i class="far fa-trash-alt"></i></a></td>-->
+
+<!--                        <div><button class="btn btn-danger" type="button">Delete<svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16" class="bi bi-trash-fill">-->
+                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"></path>
+                                    </svg></button></div>
+                        </td>
+                    </tr>
+                    <tr></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="/assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---1-Index-Table-with-Search--Sort-Filters.js"></script>
+    <script src="/assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---Material-UI-Actions.js"></script>
+</body>
+
+</html>

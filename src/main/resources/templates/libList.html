@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http:/www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>BoookMs</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Acme&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Advent+Pro&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Akronim&amp;display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/css/theme.bootstrap_4.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="/assets/css/Ludens---1-Index-Table-with-Search--Sort-Filters-v20.css">
+    <link rel="stylesheet" href="/assets/css/Navbar-With-Button-icons.css">
+    <link rel="stylesheet" href="/assets/css/Pretty-Registration-Form-.css">
+
+
+</head>
+
+<body style="text-shadow: 0px 0px;box-shadow: 0px 0px;">
+<div th:replace="fragment.html :: navBar"></div>
+    <div style="text-align: center;font-size: 30px;margin: 20px;"><label class="form-label" style="text-align: center;font-family: Akronim, serif;color: var(--bs-purple);font-size: 55px;"><strong>Library Details</strong></label>
+        <div style="font-size: 20px;">
+            <div class="table-responsive" style="padding-right: 80px;padding-left: 80px;">
+                <table class="table">
+                    <thead style="background: var(--bs-border-color);font-family: Acme, sans-serif;">
+                        <tr>
+                            <th style="height: 40px;">Id&nbsp;</th>
+                            <th style="width: 200px;height: 40px;">Student Name</th>
+                            <th style="width: 200px;height: 40px;">Email</th>
+                            <th style="width: 200px;height: 40px;">Book Name</th>
+                            <th style="width: 200px;height: 40px;">Phone No</th>
+                            <th>Borrowed Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="library: ${libList}">
+                            <td th:text="${library.id}"></td>
+                            <td th:text="${library.stuName}"></td>
+                            <td th:text="${library.email}"></td>
+                            <td th:text="${library.nameOfBook}"></td>
+                            <td th:text="${library.phoneNO}"></td>
+                            <td th:text="${library.borrowDate}"></td>
+                            <td><a th:href="@{/show/delete/{libraryid}/(libraryid=${library.id})}" class="btn btn-danger" role="button">Delete&nbsp;<i class="far fa-trash-alt"></i></a></td>
+                        </tr>
+                        <tr></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/jquery.tablesorter.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-filter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.2/js/widgets/widget-storage.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="/assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---1-Index-Table-with-Search--Sort-Filters.js"></script>
+    <script src="/assets/js/Ludens---1-Index-Table-with-Search--Sort-Filters-v20-Ludens---Material-UI-Actions.js"></script>
+</body>
+
+</html>
